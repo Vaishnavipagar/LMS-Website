@@ -53,6 +53,7 @@ img{display:block;max-width:100%}
 .pdrawer .pbrand{color:#fff;margin-bottom:14px}
 .pdrawer a:not(.pbrand):not(.btn){padding:12px 14px;border-radius:12px;font-size:14px;font-weight:600;color:rgba(255,255,255,.8)}
 .pdrawer a:not(.pbrand):not(.btn):hover{background:rgba(215,244,82,.14);color:#fff}
+.pdrawer .btn{margin-top:14px;justify-content:center}
 .promo{display:flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.28);background:rgba(255,255,255,.08);border-radius:999px;padding:7px 12px;font-size:11.5px}
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border-radius:999px;border:0;font-weight:600;cursor:pointer;transition:transform .25s var(--ease),box-shadow .25s,background .25s;will-change:transform}
 .btn-start{background:#0C0E07;color:#fff;font-size:12px;padding:9px 18px}
@@ -353,8 +354,12 @@ img{display:block;max-width:100%}
 @media(max-width:767px){
 .pnav{justify-content:flex-start;gap:12px}
 .pnav.scrolled{padding:16px 24px}
-.pnav .pcta{margin-left:10px}
-.phamb{display:flex;margin-left:auto;flex:none}
+.pnav .pcta{display:none}
+.phamb{display:flex;margin-left:auto;flex:none;align-items:flex-end;padding-right:12px}
+.courses-sec .inner{padding-left:24px;padding-right:24px}
+.mani-left{max-width:560px;margin:0 auto;width:100%}
+.statgrid{max-width:560px;margin:34px auto 0}
+.scale-l{max-width:560px;margin:0 auto}
 .shell{flex-direction:column}
 .shell .side{display:flex;width:100%;height:auto;position:static;order:2}
 .shell .main{order:1;max-width:none;padding:20px 18px}
