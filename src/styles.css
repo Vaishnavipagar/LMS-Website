@@ -379,7 +379,9 @@ img{display:block;max-width:100%}
 .rev-dots{justify-content:center}
 .statgrid{gap:18px}
 .stat{min-height:0}
-.scale-l{padding:48px 24px;max-width:none;margin:0}
+.scale-l{padding:48px 24px;max-width:none;margin:0;text-align:center}
+.scale-l>div:first-child{justify-content:center}
+.scale-feats{text-align:left}
 .scale-feats{grid-template-columns:1fr;gap:16px;margin-top:28px}
 .scale-feats>div:not(:first-child){background:#fff;border:1px solid var(--line);border-radius:16px;padding:18px}
 .scale-feats>div:not(:first-child) p{margin-top:8px}
