@@ -119,9 +119,9 @@ export default function Landing() {
   return (
     <div className="landing">
       <nav className={`pnav${scrolled ? ' scrolled' : ''}${light ? ' light' : ''}`}>
-        <button className="phamb" aria-label="Open navigation menu" onClick={() => setMopen(true)}><span /><span /><span /></button>
         <Link to="/" className="pbrand" onClick={closeM}><span className="mk">L</span> LearnLoop</Link>
         <div className="plinks"><a href="#courses">Products</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#resources">Resource</a><a href="#company">Company</a></div>
+        <button className="phamb" aria-label="Open navigation menu" onClick={() => setMopen(true)}><span /><span /><span /></button>
         <div className="pcta">
           {user ? <Link to="/dashboard" className="btn btn-start">Dashboard</Link> : <Link to="/login" className="btn btn-start">Login</Link>}
         </div>
@@ -145,19 +145,6 @@ export default function Landing() {
             <h1><span className="mask"><span>Learn</span></span><span className="mask"><span>Anything And</span></span><span className="mask"><span>Achieve</span></span><span className="mask"><span>Everything</span></span></h1>
             <p className="hero-sub">Turn your curiosity into real-world skills. Learn from expert-led courses, build practical knowledge, track your progress, and earn certificates—all in one place.</p>
             <a href="#courses" className="hero-cta">Browse Courses</a>
-          </div>
-          <div className="hero-right">
-            <div className="earn">
-              <div className="earn-top"><span className="earn-brand"><i />LEARNLOOP</span><span className="earn-dots">•••</span></div>
-              <div className="pct">92%</div>
-              <div className="cap2">Completion Rate</div>
-              <div className="earn-bar"><i /></div>
-              <a href="#courses" className="earn-btn">Browse Courses</a>
-            </div>
-            <div className="hero-stats">
-              <div className="hstat"><span className="ic">✦</span><div><b>92% Trusted</b><span>50K+ Active Learners</span></div></div>
-              <div className="hstat"><span className="ic">◉</span><div><b>500+</b><span>Expert Courses</span></div></div>
-            </div>
           </div>
         </div>
         <div className="scroll-hint"><i /></div>
