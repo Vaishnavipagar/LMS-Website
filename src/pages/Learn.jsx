@@ -41,7 +41,7 @@ export default function Learn() {
           ))}
         </div>
       </aside>
-      <div className="main" style={{maxWidth:1100}}>
+      <div className="main">
         <div className="video">
           <video key={cur.key} controls poster="" src={SAMPLE} style={{background:'#000'}} />
         </div>

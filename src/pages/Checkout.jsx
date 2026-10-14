@@ -25,7 +25,7 @@ export default function Checkout() {
     <div className="container" style={{padding:'40px 28px',maxWidth:980}}>
       <h1 style={{fontSize:34,letterSpacing:'-.03em'}}>Secure Checkout</h1>
       <p style={{color:'#6C7261'}}>Production integrates Razorpay / Stripe + Supabase orders table. This is a functional frontend mock.</p>
-      <div style={{display:'grid',gridTemplateColumns:'1.2fr .8fr',gap:20,marginTop:20}}>
+      <div className="co-grid" style={{marginTop:20}}>
         <div className="form">
           <div className="tabs">{['UPI','Card','NetBanking'].map((m)=><button key={m} className={mode===m?'on':''} onClick={()=>setMode(m)}>{m}</button>)}</div>
           {mode==='UPI' && <><label className="lbl">UPI ID</label><input className="input" placeholder="name@upi" /></>}

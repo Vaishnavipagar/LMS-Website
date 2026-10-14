@@ -61,3 +61,4 @@
 .seg button{border:0;background:transparent;border-radius:9px;padding:10px;font-size:13px;font-weight:700;cursor:pointer;color:#666}
 .seg button.on{background:#fff;color:#111;box-shadow:0 2px 8px rgba(0,0,0,.1)}
 @media(max-width:1000px){.auth2{grid-template-columns:1fr}.auth2-left{min-height:420px;padding:80px 28px 36px}.aimg{display:none}.auth2-right{padding:28px 18px}}
+@media(max-width:767px){.fgrid{grid-template-columns:1fr}.acard{padding:26px 20px}.auth2-left{padding:64px 24px 32px}.auth2-brand{left:24px;top:24px}.auth2-left h1{font-size:44px}}

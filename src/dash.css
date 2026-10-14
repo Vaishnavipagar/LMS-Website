@@ -184,4 +184,7 @@
 .dkpis{gap:10px}
 .dcard{padding:18px}
 .dtop .dav{width:38px;height:38px}
+.dtable{display:block;overflow-x:auto}
+.trow,.crow{flex-wrap:wrap}
+.badge-grid{grid-template-columns:repeat(2,1fr)}
 }

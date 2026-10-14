@@ -134,7 +134,6 @@ export default function Landing() {
         <a href="#pricing" onClick={closeM}>Pricing</a>
         <a href="#resources" onClick={closeM}>Resource</a>
         <a href="#company" onClick={closeM}>Company</a>
-        {user ? <Link to="/dashboard" className="btn btn-start" onClick={closeM}>Dashboard</Link> : <Link to="/login" className="btn btn-start" onClick={closeM}>Login</Link>}
       </aside>
 
       {/* HERO — 100vh, edge to edge */}
