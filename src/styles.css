@@ -387,7 +387,12 @@ img{display:block;max-width:100%}
 .rev-who img{flex:none}
 .rev-dots{justify-content:center}
 .statgrid{gap:18px;width:100%}
-.stat{min-width:0;min-height:0}
+.stat{min-width:0;min-height:0;width:100%;max-width:100%;box-sizing:border-box}
+.stat .pct{flex-wrap:wrap;row-gap:8px;font-size:28px}
+.stat p{overflow-wrap:break-word}
+.mani-grid{min-width:0}
+.mani-right{min-width:0}
+.mani-right p.lead{font-size:21px;line-height:1.32;overflow-wrap:break-word;max-width:100%}
 .scale-l{padding:48px 24px;max-width:none;margin:0;text-align:center}
 .scale-l>div:first-child{justify-content:center}
 .scale-feats{text-align:left}
