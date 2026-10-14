@@ -376,14 +376,18 @@ img{display:block;max-width:100%}
 .course .cbody{padding:20px}
 .course .price-row{gap:12px}
 .course .price-row .btn{white-space:normal;text-align:center;flex:none}
-.mani-left{text-align:center}
+.mani-left{text-align:center;min-width:0;width:100%}
 .mani-left .k{justify-content:center}
 .mani-grid{padding-left:24px;padding-right:24px}
-.rev-card{max-width:520px;margin-left:auto;margin-right:auto}
+.mani-right{min-width:0}
+.rev-card{width:100%;max-width:100%;box-sizing:border-box;margin-left:auto;margin-right:auto}
+.rev-card q{overflow-wrap:break-word}
 .rev-who{justify-content:center}
+.rev-who>div{min-width:0}
+.rev-who img{flex:none}
 .rev-dots{justify-content:center}
-.statgrid{gap:18px}
-.stat{min-height:0}
+.statgrid{gap:18px;width:100%}
+.stat{min-width:0;min-height:0}
 .scale-l{padding:48px 24px;max-width:none;margin:0;text-align:center}
 .scale-l>div:first-child{justify-content:center}
 .scale-feats{text-align:left}
