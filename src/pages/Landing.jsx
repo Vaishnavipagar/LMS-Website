@@ -93,6 +93,17 @@ export default function Landing() {
     return () => io.disconnect();
   }, []);
 
+  const [mopen, setMopen] = useState(false);
+  const closeM = () => setMopen(false);
+  useEffect(() => {
+    if (!mopen) return;
+    const onKey = (e) => { if (e.key === 'Escape') setMopen(false); };
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [mopen]);
+
   const openCourse = (c) => {
     const owned = enrollments.some((e) => e.courseId === c.id);
     if (owned) return nav('/learn/' + c.id);
@@ -108,12 +119,23 @@ export default function Landing() {
   return (
     <div className="landing">
       <nav className={`pnav${scrolled ? ' scrolled' : ''}${light ? ' light' : ''}`}>
-        <Link to="/" className="pbrand"><span className="mk">L</span> LearnLoop</Link>
+        <button className="phamb" aria-label="Open navigation menu" onClick={() => setMopen(true)}><span /><span /><span /></button>
+        <Link to="/" className="pbrand" onClick={closeM}><span className="mk">L</span> LearnLoop</Link>
         <div className="plinks"><a href="#courses">Products</a><a href="#features">Features</a><a href="#pricing">Pricing</a><a href="#resources">Resource</a><a href="#company">Company</a></div>
         <div className="pcta">
           {user ? <Link to="/dashboard" className="btn btn-start">Dashboard</Link> : <Link to="/login" className="btn btn-start">Login</Link>}
         </div>
       </nav>
+      <div className={'povl' + (mopen ? ' on' : '')} onClick={closeM} aria-hidden="true" />
+      <aside className={'pdrawer' + (mopen ? ' open' : '')} aria-label="Mobile navigation">
+        <Link to="/" className="pbrand" onClick={closeM}><span className="mk">L</span> LearnLoop</Link>
+        <a href="#courses" onClick={closeM}>Products</a>
+        <a href="#features" onClick={closeM}>Features</a>
+        <a href="#pricing" onClick={closeM}>Pricing</a>
+        <a href="#resources" onClick={closeM}>Resource</a>
+        <a href="#company" onClick={closeM}>Company</a>
+        {user ? <Link to="/dashboard" className="btn btn-start" onClick={closeM}>Dashboard</Link> : <Link to="/login" className="btn btn-start" onClick={closeM}>Login</Link>}
+      </aside>
 
       {/* HERO — 100vh, edge to edge */}
       <header className="hero">

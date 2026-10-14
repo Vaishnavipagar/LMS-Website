@@ -19,6 +19,16 @@ export function Layout({ title, sub, active, children }) {
   const nav = useNavigate();
   const [theme, setTheme] = useState(() => localStorage.getItem('papersky_dash_theme') || 'light');
   const [q, setQ] = useState('');
+  const [mnav, setMnav] = useState(false);
+  const closeMnav = () => setMnav(false);
+  useEffect(() => {
+    if (!mnav) return;
+    const onKey = (e) => { if (e.key === 'Escape') setMnav(false); };
+    document.addEventListener('keydown', onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = 'hidden';
+    return () => { document.removeEventListener('keydown', onKey); document.body.style.overflow = prev; };
+  }, [mnav]);
   const flip = () => { const t = theme === 'light' ? 'dark' : 'light'; setTheme(t); localStorage.setItem('papersky_dash_theme', t); };
   const items = [
     ['/dashboard', 'Dashboard', '◍'], ['/courses', 'Browse Courses', '▦'],
@@ -26,17 +36,22 @@ export function Layout({ title, sub, active, children }) {
   ];
   return (
     <div className={`dshell ${theme}`}>
-      <aside className="dside">
+      <div className="mnav">
+        <button className="dmob" aria-label="Open navigation menu" onClick={() => setMnav(true)}><span /><span /><span /></button>
+        <span className="mnav-brand"><span className="mk">L</span> LearnLoop</span>
+      </div>
+      <div className={'dovl' + (mnav ? ' on' : '')} onClick={closeMnav} aria-hidden="true" />
+      <aside className={'dside' + (mnav ? ' open' : '')}>
         <div className="dlogo"><span className="mk">L</span> LearnLoop</div>
         <div className="dsec">LEARN</div>
         {items.map(([h, l, ic]) => (
-          <button key={h} className={'dlink' + (active === h ? ' on' : '')} onClick={() => nav(h)}><span className="ic">{ic}</span>{l}</button>
+          <button key={h} className={'dlink' + (active === h ? ' on' : '')} onClick={() => { closeMnav(); nav(h); }}><span className="ic">{ic}</span>{l}</button>
         ))}
         <div className="duser">
           <Av user={user} />
           <div style={{ minWidth: 0 }}><b style={{ fontSize: 13, display: 'block', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user?.name}</b><span style={{ fontSize: 11, color: 'var(--dmut)' }}>{user?.subtitle || 'Student'}</span></div>
         </div>
-        <button className="dlink" style={{ marginTop: 8 }} onClick={() => { logout(); nav('/'); }}><span className="ic">→</span>Logout</button>
+        <button className="dlink" style={{ marginTop: 8 }} onClick={() => { closeMnav(); logout(); nav('/'); }}><span className="ic">→</span>Logout</button>
       </aside>
       <div className="dmain">
         <div className="dtop">
