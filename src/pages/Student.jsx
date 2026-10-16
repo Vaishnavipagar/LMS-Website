@@ -39,6 +39,7 @@ export function Layout({ title, sub, active, children }) {
       <div className="mnav">
         <button className="dmob" aria-label="Open navigation menu" onClick={() => setMnav(true)}><span /><span /><span /></button>
         <span className="mnav-brand"><span className="mk">L</span> LearnLoop</span>
+        <button className="diconbtn mnav-theme" title="Toggle light / dark" onClick={flip}>{theme === 'light' ? '◑' : '☀'}</button>
       </div>
       <div className={'dovl' + (mnav ? ' on' : '')} onClick={closeMnav} aria-hidden="true" />
       <aside className={'dside' + (mnav ? ' open' : '')}>
@@ -47,11 +48,7 @@ export function Layout({ title, sub, active, children }) {
         {items.map(([h, l, ic]) => (
           <button key={h} className={'dlink' + (active === h ? ' on' : '')} onClick={() => { closeMnav(); nav(h); }}><span className="ic">{ic}</span>{l}</button>
         ))}
-        <div className="duser">
-          <Av user={user} />
-          <div style={{ minWidth: 0 }}><b style={{ fontSize: 13, display: 'block', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user?.name}</b><span style={{ fontSize: 11, color: 'var(--dmut)' }}>{user?.subtitle || 'Student'}</span></div>
-        </div>
-        <button className="dlink" style={{ marginTop: 8 }} onClick={() => { closeMnav(); logout(); nav('/'); }}><span className="ic">→</span>Logout</button>
+        <button className="dlink" style={{ marginTop: 'auto' }} onClick={() => { closeMnav(); logout(); nav('/'); }}><span className="ic">→</span>Logout</button>
       </aside>
       <div className="dmain">
         <div className="dtop">
@@ -70,6 +67,7 @@ function TestModal({ test, onClose }) {
   const [i, setI] = useState(0);
   const [ans, setAns] = useState({});
   const [done, setDone] = useState(null);
+  const [confirmExit, setConfirmExit] = useState(false);
   const totalSecs = useMemo(() => {
     const m = parseInt(test.duration, 10);
     return Number.isFinite(m) && m > 0 ? m * 60 : 0;
@@ -104,6 +102,12 @@ function TestModal({ test, onClose }) {
   }, [test.id, done, totalSecs]);
   const mm = String(Math.floor(left / 60)).padStart(2, '0');
   const ss = String(left % 60).padStart(2, '0');
+  useEffect(() => {
+    if (!confirmExit) return;
+    const onKey = (e) => { if (e.key === 'Escape') setConfirmExit(false); };
+    document.addEventListener('keydown', onKey);
+    return () => document.removeEventListener('keydown', onKey);
+  }, [confirmExit]);
   const cur = test.questions[i];
   return (
     <div className="dmodal" onClick={onClose}>
@@ -126,7 +130,7 @@ function TestModal({ test, onClose }) {
                 ? <button className="dbtn dark" style={{ flex: 1 }} onClick={() => setI(i + 1)}>Next →</button>
                 : <button className="dbtn dark" style={{ flex: 1 }} onClick={submit}>Submit test</button>}
             </div>
-            <button className="dbtn line" style={{ width: '100%', marginTop: 10 }} onClick={onClose}>Exit</button>
+            <button className="dbtn line" style={{ width: '100%', marginTop: 10 }} onClick={() => setConfirmExit(true)}>Exit</button>
           </>
         ) : (
           <>
@@ -152,6 +156,18 @@ function TestModal({ test, onClose }) {
           </>
         )}
       </div>
+      {confirmExit && (
+        <div className="dxovl" onClick={() => setConfirmExit(false)}>
+          <div className="dxbox" role="alertdialog" aria-modal="true" aria-labelledby="dx-title" onClick={(e) => e.stopPropagation()}>
+            <b id="dx-title">Do you want to exit the test?</b>
+            <p>Your test progress may be lost. Are you sure you want to leave this test?</p>
+            <div className="dxrow">
+              <button className="dbtn dark" style={{ flex: 1 }} onClick={() => setConfirmExit(false)} aria-label="Continue test">Continue Test</button>
+              <button className="dbtn line" style={{ flex: 1 }} onClick={onClose} aria-label="Exit test">Exit Test</button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

@@ -7,10 +7,6 @@ function Left({ titleA, titleB, sub }) {
   return (
     <div className="auth2-left">
       <div className="auth2-brand"><span className="mk">L</span> LearnLoop</div>
-      <div className="aimg">
-        <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=500&q=70" alt="Learners" />
-        <div className="cap">Live cohort · Learn together</div>
-      </div>
       <div className="in">
         <div className="auth2-kick">[ LEARNLOOP LMS ]</div>
         <h1><span className="mask"><span>{titleA}</span></span><span className="mask"><span>{titleB}</span></span></h1>
